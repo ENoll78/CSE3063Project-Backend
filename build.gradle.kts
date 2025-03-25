@@ -42,6 +42,9 @@ dependencies {
 	// Database
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 
+	// Validation (jakarta.validation.*)
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
