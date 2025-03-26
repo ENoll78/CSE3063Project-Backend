@@ -32,12 +32,10 @@ class Student : User() {
 
     val gpa: Double
         get() = if (courses.isEmpty()) 0.0 else courses.map {it.grade}.average()
-
 }
 
 /**
- *
- * Embeddable type for a single course and it's grade
+ * Embeddable type for a single course and its grade
  */
 @Embeddable
 data class CourseGrade(
