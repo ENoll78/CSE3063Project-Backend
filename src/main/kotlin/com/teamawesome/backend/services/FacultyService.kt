@@ -1,7 +1,9 @@
 package com.teamawesome.backend.services
 
 import com.teamawesome.backend.models.Faculty
+import com.teamawesome.backend.models.Student
 import com.teamawesome.backend.repositories.FacultyRepository
+import com.teamawesome.backend.repositories.StudentRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
@@ -16,7 +18,10 @@ import org.springframework.stereotype.Service
  */
 
 @Service
-class FacultyService(private val facultyRepository: FacultyRepository) {
+class FacultyService(
+    private val facultyRepository: FacultyRepository,
+    private val studentRepository: StudentRepository
+    ) {
 
     // Retrieve Faculty member by unique id
     fun getFacultyById(id: String): Faculty? {
@@ -64,4 +69,7 @@ class FacultyService(private val facultyRepository: FacultyRepository) {
             true
         } else false
     }
+
+    fun getAllStudents(): Iterable<Student> =
+        studentRepository.findAll()
 }
