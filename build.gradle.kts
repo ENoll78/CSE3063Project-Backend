@@ -1,23 +1,18 @@
+// build.gradle.kts
 plugins {
 	kotlin("jvm") version "1.9.25"
 	kotlin("plugin.spring") version "1.9.25"
+	kotlin("plugin.jpa") version "1.9.25"
 	id("org.springframework.boot") version "3.4.4"
 	id("io.spring.dependency-management") version "1.1.7"
-	kotlin("plugin.jpa") version "1.9.25"
 }
 
 group = "com.teamawesome"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.9-SNAPSHOT"
 
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
-	}
-}
-
-configurations {
-	compileOnly {
-		extendsFrom(configurations.annotationProcessor.get())
 	}
 }
 
@@ -26,24 +21,19 @@ repositories {
 }
 
 dependencies {
-	// Spring stuff
+	// Spring
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.boot:spring-boot-starter-web")
-
-	// Kotlin stuff
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-
-	// JWT stuff
-	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
-
-	// Database
-	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
-
-	// Validation (jakarta.validation.*)
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+
+	// Kotlin
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+	// H2 embedded database
+	runtimeOnly("com.h2database:h2")
 
 	// Testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
